@@ -1,6 +1,7 @@
 import numpy as np
 import sys
 import os
+import matplotlib.pyplot as plt
 
 sys.path.extend(['/Tim/Projects/Mask_RCNN', '/Tim/Projects/plant-instance-seg'])
 
@@ -37,12 +38,12 @@ if __name__ == '__main__':
     mask, class_ids = dataset.load_mask(image_id)
     original_shape = image.shape
     # Resize
-    image, window, scale, padding, _ = utils.resize_image(
+    image, window, scale, padding, crop = utils.resize_image(
         image,
         min_dim=dataset_config.IMAGE_MIN_DIM,
         max_dim=dataset_config.IMAGE_MAX_DIM,
         mode=dataset_config.IMAGE_RESIZE_MODE)
-    mask = utils.resize_mask(mask, scale, padding)
+    mask = utils.resize_mask(mask, scale, padding, crop=crop)
     # Compute Bounding box
     bbox = utils.extract_bboxes(mask)
 
@@ -55,3 +56,4 @@ if __name__ == '__main__':
     log("bbox", bbox)
     # Display image and instances
     visualize.display_instances(image, bbox, mask, class_ids, dataset.class_names)
+
