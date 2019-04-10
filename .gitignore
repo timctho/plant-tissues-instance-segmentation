@@ -1,0 +1,16 @@
+
+\.idea/
+
+data/__pycache__/
+
+data/dump/
+
+data/LabeledPics/
+
+data/train/
+
+data/train-coco/
+
+data/val/
+
+data/val-coco/
