@@ -46,7 +46,7 @@ def train(model):
         imgaug.augmenters.Affine(
             scale=(0.8, 1.2),
             translate_percent={"x": (-0.05, 0.05), "y": (-0.05, 0.05)},
-            rotate=(-90, 90),  # rotate by -45 to +45 degrees
+            rotate=(-30, 30),  # rotate by -45 to +45 degrees
             order=1,  # use nearest neighbour or bilinear interpolation (fast)
             cval=0,  # if mode is constant, use a cval between 0 and 255
         )
@@ -58,7 +58,7 @@ def train(model):
                 learning_rate=config.LEARNING_RATE,
                 augmentation=augmentation,
                 epochs=60,
-                layers='heads')
+                layers='all')
 
 
 def color_splash(image, mask):
