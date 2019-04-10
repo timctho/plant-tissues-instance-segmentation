@@ -178,4 +178,3 @@ class PlantDataset(utils.Dataset):
         rle = self.annToRLE(ann, height, width)
         m = maskUtils.decode(rle)
         return m
-

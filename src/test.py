@@ -54,7 +54,8 @@ def get_ax(rows=1, cols=1, size=16):
 def detect(img_path, model, config):
     image = skimage.io.imread(img_path)
     image, _, _, _, _ = utils.resize_image(
-        image, config.IMAGE_MIN_DIM, config.IMAGE_MAX_DIM, config.IMAGE_MIN_SCALE, mode=config.IMAGE_RESIZE_MODE)
+        image, config.IMAGE_MIN_DIM, config.IMAGE_MAX_DIM, config.IMAGE_MIN_SCALE,
+        mode=config.IMAGE_RESIZE_MODE)
     results = model.detect([image], verbose=1)
 
     # Display results
@@ -84,5 +85,3 @@ if __name__ == '__main__':
 
     for i in range(5):
         detect(args.img_path, model, config)
-
-

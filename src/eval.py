@@ -88,4 +88,3 @@ if __name__ == '__main__':
 
     for image_id in dataset.image_ids:
         detect(dataset, image_id, model, config)
-

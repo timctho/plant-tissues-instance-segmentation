@@ -25,7 +25,6 @@ COCO_WEIGHTS_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
 DEFAULT_LOGS_DIR = os.path.join(ROOT_DIR, "logs")
 
 
-
 def train(model):
     """Train the model."""
     # Training dataset.
@@ -83,7 +82,6 @@ def color_splash(image, mask):
 
 
 def detect_and_color_splash(model, image_path=None, video_path=None):
-
     # Image or video?
     if image_path:
         # Run model detection and generate the color splash effect
@@ -91,7 +89,7 @@ def detect_and_color_splash(model, image_path=None, video_path=None):
         # Read image
         image = skimage.io.imread(args.image)
 
-        image = cv2.resize(image, None, fx=1/10, fy=1/10)
+        image = cv2.resize(image, None, fx=1 / 10, fy=1 / 10)
 
         # Detect objects
         r = model.detect([image], verbose=1)[0]
@@ -167,8 +165,8 @@ if __name__ == '__main__':
     if args.command == "train":
         assert args.dataset, "Argument --dataset is required for training"
     elif args.command == "splash":
-        assert args.image or args.video,\
-               "Provide --image or --video to apply color splash"
+        assert args.image or args.video, \
+            "Provide --image or --video to apply color splash"
 
     print("Weights: ", args.weights)
     print("Dataset: ", args.dataset)
@@ -183,6 +181,8 @@ if __name__ == '__main__':
             # one image at a time. Batch size = GPU_COUNT * IMAGES_PER_GPU
             GPU_COUNT = 1
             IMAGES_PER_GPU = 1
+
+
         config = InferenceConfig()
     config.display()
 
